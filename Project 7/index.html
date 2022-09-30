@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    tr{
+        height: 100px;
+        width: 200px;
+    }
+    td, img{
+        width: 100px
+    }
+</style>
+<body>
+    <table class="table" border="1px">
+       
+    </table>
+
+    <script>
+        const fetchData = async () => {
+        try {
+            const response = await fetch('/randNum');
+            let body = await response.json();
+            // let random = JSON.stringify(body.random).split('"');
+            // let randomValue = random[1]
+            let size = Number(JSON.stringify(body.size))
+            alert("Table size : " + size);
+            loop(size)
+        } catch (error) {
+            alert("Errorrrr: " +error);
+        }
+        };
+        fetchData();
+        
+        
+        function loop(size){ //+ random
+            const table = document.querySelector(".table");
+            let html = "";
+
+            for(let i = 0; i < size; i++){
+                html += "<tr>"
+                    for(let j = 0; j < size; j++){
+                        let num = Math.floor(Math.random() * 7); //or random
+                        
+                        let color;
+                        
+                        if(num === 0){
+                            color = "blue";
+                        }else if((num === 1 || num === 2) || num === 3){
+                            color = "gray";
+                        }else if((num === 4 || num === 5) || num === 6){
+                            color = "brown"
+                        }
+                        html += `<td style='background-color: ${color}'></td>`;
+                    }
+                html += "</tr>"
+            }
+            table.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

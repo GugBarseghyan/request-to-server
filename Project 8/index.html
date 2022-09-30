@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hello</h1>
+    <script>
+        const url = '/factNum';
+
+        const fetchData = async () => {
+        try {
+            const response = await fetch(url);
+            let body = await response.json();
+            let factNum = Number(body.fact);
+            factorial(factNum);
+        } catch (error) {
+            alert("Errorrrr: " +error);
+        }
+        };
+        fetchData();
+
+        function factorial(a){ 
+                memory = 1; 
+                if(a === 0 || a === 1){ 
+                    document.write("Your searched number is:  "  + a + "!   the factorial of this number is: " + 1);
+                    alert("Your searched number is:  "  + a + "!   the factorial of this number is: " + 1);
+                }else{
+                    for(let i = 1; i < a+1; i++){
+                        memory = memory * i; 
+                        console.log(memory);
+                    }
+                    document.write("Your searched number is:  "  + a + "!   the factorial of this number is: " + memory);
+                    alert("Your searched number is:  "  + a + "!   the factorial of this number is: " + memory);
+                }
+            }
+
+    </script>
+</body>
+</html>
